@@ -15,7 +15,7 @@ myLibrary REST API has been inspired by Miguel Grinberg [Flask Tutorial](https:/
 ### 0. Download code from github
 
 ```sh
-git clone -b master GITHIBLINK
+git clone -b master https://github.com/MarcosFernandez/myLibrary.git
 ```
 
 ### 1. Install virtualenv
