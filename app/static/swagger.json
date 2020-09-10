@@ -1,0 +1,770 @@
+{
+    "openapi":"3.0.0",
+    "info": {
+	    "description" : "MyLibrary RestAPI",
+	    "version" : "1.0.0",
+	    "title" : "MyLibrary",
+	    "license" : {
+		    "name" : "GPLv3",
+		    "url":"https://www.gnu.org/licenses/gpl-3.0.html"
+	    }
+    },
+    "servers": [
+        {
+            "url" : "/"
+        }
+    ],
+    "tags" : [
+	{
+            "name" : "Author Request",
+	    "description" : "API for requesting and return author requests"
+        }
+    ],
+    "paths" : {
+        "/api/author/{name}" : {
+	     "parameters": [
+	         {
+                      "name" : "name",
+		      "in" : "path",
+		      "required": true,
+		      "description" : "Author name that we want to match.",
+		      "type": "string"
+	         }
+	     ],
+             "get" : {
+	         "tags" : ["Author Request"],
+		 "summary" : "Return a given Author Request",
+		 "responses" : {
+		     "200" : {
+		         "description": "OK",
+			 "schema": {
+			     "$ref" : "#/components/schemas/authorRequest"
+			 }
+		     }
+		 }
+	     },
+             "put" : {
+                 "summary" : "Edit Author request by name",
+                 "tags" : ["Author Request"],
+                 "parameters" : [
+                     {
+                         "in" : "path",
+                         "name" : "name",
+                         "required" : true,
+                         "description" : "Author Request name",
+                         "schema" : {
+                             "$ref" : "#/components/schemas/name"
+                         }
+                     }
+                 ],
+                 "requestBody" : {
+                      "description" : "Author Request Object",
+                      "required" : true,
+                      "content" : {
+                          "application/json" : {
+                               "schema" : {
+                                   "$ref" : "#/components/schema/authorRequestPostBody"
+                               }
+                           }
+                      }
+                 },
+                 "produces" : [
+                     "application/json"
+                 ],
+                 "responses" : {
+                     "200" : {
+                         "description" : "OK",
+                         "schema": {
+                             "$ref" : "#/components/schemas/authorRequest"
+                         }
+                     },
+                     "400" : {
+                         "description" : "Failed. Bad Post Data."
+                     }
+                 }
+             },
+             "delete": {
+                 "summary": "Delete Author Request by Name.",
+                 "tags" : ["Author Request"],
+                 "parameters" : [
+                     {
+                         "in" : "path",
+                         "name" : "name",
+                         "required" : true,
+                         "description" : "Author Request name",
+                         "schema" : {
+                             "$ref" : "#/components/schemas/name"
+                         }
+                     }
+                 ],
+                 "responses" : {
+                      "204" : {
+                          "description" : "OK",
+                          "schema" : {
+                              "$ref": "#/components/schemas/success"
+                          }
+                       },
+                       "404" : {
+                         "description" : "Failed. Author Request not found."
+                       }
+                 }
+             }
+        },
+        "/api/authors" : {
+	     "get" : {
+	         "tags" : ["Author Requests"],
+		 "summary" : "Return all Author Requests",
+		 "responses" : {
+		     "200" : {
+		         "description": "OK",
+			 "schema": {
+			     "$ref" : "#/components/schemas/authorRequests"
+			 }
+		     }
+		 }
+	     }
+        },
+        "/api/author" : {
+	     "post" : {
+	         "tags" : ["Create new Author"],
+		 "summary" : "Create a new Author Request.",
+                 "requestBody" : {
+                     "description" : "Language Request Post Object",
+                     "required" : true,
+                     "content" : {
+                         "application/json" : {
+                             "schema" : {
+                                 "$ref" : "#/components/schemas/authorRequestPostBody"
+                             }
+                         }
+                     }
+                 },
+		 "responses" : {
+		     "201" : {
+		         "description": "OK",
+			 "schema": {
+			     "$ref" : "#/components/schemas/authorRequest"
+			 }
+		     },
+                     "400" : {
+                         "description" : "Failed. Bad post data."
+                     }
+		 }
+	     }
+        },
+        "/api/language/{name}" : {
+	     "parameters": [
+	         {
+                      "name" : "name",
+		      "in" : "path",
+		      "required": true,
+		      "description" : "Language name that we want to match.",
+		      "type": "string"
+	         }
+	     ],
+             "get" : {
+	         "tags" : ["Language Request"],
+		 "summary" : "Return a given Language Request",
+		 "responses" : {
+		     "200" : {
+		         "description": "OK",
+			 "schema": {
+			     "$ref" : "#/components/schemas/languageRequest"
+			 }
+		     }
+		 }
+	     },
+             "put" : {
+                 "summary" : "Edit Language request by name",
+                 "tags" : ["Language Request"],
+                 "parameters" : [
+                     {
+                         "in" : "path",
+                         "name" : "name",
+                         "required" : true,
+                         "description" : "Language Request name",
+                         "schema" : {
+                             "$ref" : "#/components/schemas/name"
+                         }
+                     }
+                 ],
+                 "requestBody" : {
+                      "description" : "Language Request Object",
+                      "required" : true,
+                      "content" : {
+                          "application/json" : {
+                               "schema" : {
+                                   "$ref" : "#/components/schema/languageRequestPostBody"
+                               }
+                           }
+                      }
+                 },
+                 "produces" : [
+                     "application/json"
+                 ],
+                 "responses" : {
+                     "200" : {
+                         "description" : "OK",
+                         "schema": {
+                             "$ref" : "#/components/schemas/languageRequest"
+                         }
+                     },
+                     "400" : {
+                         "description" : "Failed. Bad Post Data."
+                     }
+                 }
+             },
+             "delete": {
+                 "summary": "Delete Language Request by Name.",
+                 "tags" : ["Language Request"],
+                 "parameters" : [
+                     {
+                         "in" : "path",
+                         "name" : "name",
+                         "required" : true,
+                         "description" : "Language Request name",
+                         "schema" : {
+                             "$ref" : "#/components/schemas/name"
+                         }
+                     }
+                 ],
+                 "responses" : {
+                      "204" : {
+                          "description" : "OK",
+                          "schema" : {
+                              "$ref": "#/components/schemas/success"
+                          }
+                       },
+                       "404" : {
+                         "description" : "Failed. Language Request not found."
+                       }
+                 }
+             }
+        },
+        "/api/languages" : {
+	     "get" : {
+	         "tags" : ["Language Requests"],
+		 "summary" : "Return all Language Requests",
+		 "responses" : {
+		     "200" : {
+		         "description": "OK",
+			 "schema": {
+			     "$ref" : "#/components/schemas/languageRequests"
+			 }
+		     }
+		 }
+	     }
+        },
+        "/api/language" : {
+	     "post" : {
+	         "tags" : ["Create new Language"],
+		 "summary" : "Create a new Language Request.",
+                 "requestBody" : {
+                     "description" : "Language Request Post Object",
+                     "required" : true,
+                     "content" : {
+                         "application/json" : {
+                             "schema" : {
+                                 "$ref" : "#/components/schemas/languageRequestPostBody"
+                             }
+                         }
+                     }
+                 },
+		 "responses" : {
+		     "201" : {
+		         "description": "OK",
+			 "schema": {
+			     "$ref" : "#/components/schemas/languageRequest"
+			 }
+		     },
+                     "400" : {
+                         "description" : "Failed. Bad post data."
+                     }
+		 }
+	     }
+        },
+        "/api/editorial/{name}" : {
+	     "parameters": [
+	         {
+                      "name" : "name",
+		      "in" : "path",
+		      "required": true,
+		      "description" : "Editorial name that we want to match.",
+		      "type": "string"
+	         }
+	     ],
+             "get" : {
+	         "tags" : ["Editorial Request"],
+		 "summary" : "Return a given Editorial Request",
+		 "responses" : {
+		     "200" : {
+		         "description": "OK",
+			 "schema": {
+			     "$ref" : "#/components/schemas/editorialRequest"
+			 }
+		     }
+		 }
+	     },
+             "put" : {
+                 "summary" : "Edit Editorial request by name",
+                 "tags" : ["Editorial Request"],
+                 "parameters" : [
+                     {
+                         "in" : "path",
+                         "name" : "name",
+                         "required" : true,
+                         "description" : "Editorial Request name",
+                         "schema" : {
+                             "$ref" : "#/components/schemas/name"
+                         }
+                     }
+                 ],
+                 "requestBody" : {
+                      "description" : "Editorial Request Object",
+                      "required" : true,
+                      "content" : {
+                          "application/json" : {
+                               "schema" : {
+                                   "$ref" : "#/components/schema/editorialRequestPostBody"
+                               }
+                           }
+                      }
+                 },
+                 "produces" : [
+                     "application/json"
+                 ],
+                 "responses" : {
+                     "200" : {
+                         "description" : "OK",
+                         "schema": {
+                             "$ref" : "#/components/schemas/editorialRequest"
+                         }
+                     },
+                     "400" : {
+                         "description" : "Failed. Bad Post Data."
+                     }
+                 }
+             },
+             "delete": {
+                 "summary": "Delete Editorial Request by Name.",
+                 "tags" : ["Editorial Request"],
+                 "parameters" : [
+                     {
+                         "in" : "path",
+                         "name" : "name",
+                         "required" : true,
+                         "description" : "Editorial Request name",
+                         "schema" : {
+                             "$ref" : "#/components/schemas/name"
+                         }
+                     }
+                 ],
+                 "responses" : {
+                      "204" : {
+                          "description" : "OK",
+                          "schema" : {
+                              "$ref": "#/components/schemas/success"
+                          }
+                       },
+                       "404" : {
+                         "description" : "Failed. Editorial Request not found."
+                       }
+                 }
+             }
+        },
+        "/api/editorials" : {
+	     "get" : {
+	         "tags" : ["Editorial Requests"],
+		 "summary" : "Return all Editorial Requests",
+		 "responses" : {
+		     "200" : {
+		         "description": "OK",
+			 "schema": {
+			     "$ref" : "#/components/schemas/editorialRequests"
+			 }
+		     }
+		 }
+	     }
+        },
+        "/api/editorial" : {
+	     "post" : {
+	         "tags" : ["Create new Editorial"],
+		 "summary" : "Create a new Editorial Request.",
+                 "requestBody" : {
+                     "description" : "Editorial Request Post Object",
+                     "required" : true,
+                     "content" : {
+                         "application/json" : {
+                             "schema" : {
+                                 "$ref" : "#/components/schemas/editorialRequestPostBody"
+                             }
+                         }
+                     }
+                 },
+		 "responses" : {
+		     "201" : {
+		         "description": "OK",
+			 "schema": {
+			     "$ref" : "#/components/schemas/editorialRequest"
+			 }
+		     },
+                     "400" : {
+                         "description" : "Failed. Bad post data."
+                     }
+		 }
+	     }
+        },
+        "/api/book/{title}" : {
+	     "parameters": [
+	         {
+                      "name" : "title",
+		      "in" : "path",
+		      "required": true,
+		      "description" : "Book title that we want to match.",
+		      "type": "string"
+	         }
+	     ],
+             "get" : {
+	         "tags" : ["Book Request"],
+		 "summary" : "Return a given Book Request",
+		 "responses" : {
+		     "200" : {
+		         "description": "OK",
+			 "schema": {
+			     "$ref" : "#/components/schemas/bookRequest"
+			 }
+		     }
+		 }
+	     },
+             "put" : {
+                 "summary" : "Edit Book request by title",
+                 "tags" : ["Book Request"],
+                 "parameters" : [
+                     {
+                         "in" : "path",
+                         "name" : "title",
+                         "required" : true,
+                         "description" : "Book Request title",
+                         "schema" : {
+                             "$ref" : "#/components/schemas/title"
+                         }
+                     }
+                 ],
+                 "requestBody" : {
+                      "description" : "Title Request Object",
+                      "required" : true,
+                      "content" : {
+                          "application/json" : {
+                               "schema" : {
+                                   "$ref" : "#/components/schema/bookRequestPostBody"
+                               }
+                           }
+                      }
+                 },
+                 "produces" : [
+                     "application/json"
+                 ],
+                 "responses" : {
+                     "200" : {
+                         "description" : "OK",
+                         "schema": {
+                             "$ref" : "#/components/schemas/bookRequest"
+                         }
+                     },
+                     "400" : {
+                         "description" : "Failed. Bad Post Data."
+                     }
+                 }
+             },
+             "delete": {
+                 "summary": "Delete Book Request by title.",
+                 "tags" : ["Book Request"],
+                 "parameters" : [
+                     {
+                         "in" : "path",
+                         "name" : "title",
+                         "required" : true,
+                         "description" : "Book Request title",
+                         "schema" : {
+                             "$ref" : "#/components/schemas/title"
+                         }
+                     }
+                 ],
+                 "responses" : {
+                      "204" : {
+                          "description" : "OK",
+                          "schema" : {
+                              "$ref": "#/components/schemas/success"
+                          }
+                       },
+                       "404" : {
+                         "description" : "Failed. Book Request not found."
+                       }
+                 }
+             }
+        },
+        "/api/books" : {
+	     "get" : {
+	         "tags" : ["Book Requests"],
+		 "summary" : "Return all Book Requests",
+		 "responses" : {
+		     "200" : {
+		         "description": "OK",
+			 "schema": {
+			     "$ref" : "#/components/schemas/bookRequests"
+			 }
+		     }
+		 }
+	     }
+        },
+        "/api/book" : {
+	     "post" : {
+	         "tags" : ["Create new Book"],
+		 "summary" : "Create a new Book Request.",
+                 "requestBody" : {
+                     "description" : "Book Request Post Object",
+                     "required" : true,
+                     "content" : {
+                         "application/json" : {
+                             "schema" : {
+                                 "$ref" : "#/components/schemas/bookRequestPostBody"
+                             }
+                         }
+                     }
+                 },
+		 "responses" : {
+		     "201" : {
+		         "description": "OK",
+			 "schema": {
+			     "$ref" : "#/components/schemas/bookRequest"
+			 }
+		     },
+                     "400" : {
+                         "description" : "Failed. Bad post data."
+                     }
+		 }
+	     }
+        }
+    },
+    "components":{
+        "schemas" : {
+	    "name" : {
+	        "properties" : {
+		    "uuid": {
+		        "type" : "string"
+		    }
+		}
+	    },
+            "title" : {
+	        "properties" : {
+		    "uuid": {
+		        "type" : "string"
+		    }
+		}
+	    },
+            "success" : {
+                "type" : "object",
+                "properties" : {
+	            "success" : {
+                         "type" : "boolean",
+                         "format" : "boolean"              
+		    }
+	        }
+            },
+            "authorRequestPostBody" : {
+                "type": "object",
+                "properties" : {
+	            "name": {
+                         "type" : "string",
+		         "format" : "string"
+		    },
+		    "country" : {
+                         "type" : "string",
+                         "format" : "string"              
+		    }
+	        }
+	    },
+	    "authorRequest" : {
+		"type" : "object",
+		"properties" :{
+		    "name" : {
+		        "type" : "string",
+			"format" : "string"
+		    },
+		    "country" : {
+                        "type" : "string",
+			"format" : "string"
+		    },
+		    "id" : {
+                        "type" : "number",
+			"format" : "number"
+	            }
+		}
+            },
+            "authorRequests" : {
+                "type" : "object",
+                "properties" : {
+                    "authorRequest": {
+                        "type" : "object",
+                        "additionalProperties" : {
+                            "$ref" : "#/components/schemas/authorRequest"
+                        }
+                    } 
+                }
+            },
+	    "languageRequestPostBody": {
+                "type": "object",
+                "properties" : {
+                    "name": {
+                         "type" : "string",
+                         "format" : "string"
+                    }
+	        }
+            },
+	    "languageRequest" : {
+		"type" : "object",
+		"properties" :{
+		    "name" : {
+		        "type" : "string",
+			"format" : "string"
+		    },
+		    "id" : {
+                        "type" : "number",
+			"format" : "number"
+	            }
+		}
+            },
+            "languageRequests" : {
+                "type" : "object",
+                "properties" : {
+                    "languageRequest": {
+                        "type" : "object",
+                        "additionalProperties" : {
+                            "$ref" : "#/components/schemas/languageRequest"
+                        }
+                    } 
+                }
+            },
+            "editorialRequestPostBody" : {
+                "type": "object",
+                "properties" : {
+	            "name": {
+                         "type" : "string",
+		         "format" : "string"
+		    },
+		    "country" : {
+                         "type" : "string",
+                         "format" : "string"              
+		    }
+	        }
+	    },
+	    "editorialRequest" : {
+		"type" : "object",
+		"properties" :{
+		    "name" : {
+		        "type" : "string",
+			"format" : "string"
+		    },
+		    "country" : {
+                        "type" : "string",
+			"format" : "string"
+		    },
+		    "id" : {
+                        "type" : "number",
+			"format" : "number"
+	            }
+		}
+            },
+            "editorialRequests" : {
+                "type" : "object",
+                "properties" : {
+                    "editorialRequest": {
+                        "type" : "object",
+                        "additionalProperties" : {
+                            "$ref" : "#/components/schemas/editorialRequest"
+                        }
+                    } 
+                }
+            },
+            "bookRequestPostBody" : {
+                "type": "object",
+                "properties" : {
+	            "title" : {
+                         "type" : "string",
+                         "format" : "string"              
+		    },
+                    "language" : {
+                         "type" : "string",
+                         "format" : "string"              
+		    },
+                    "editorial" : {
+                         "type" : "string",
+                         "format" : "string"              
+		    },
+                    "location" : {
+                         "type" : "string",
+                         "format" : "string"              
+		    },
+                    "status" : {
+                         "type" : "string",
+                         "format" : "string"              
+		    }
+	        }
+	    },
+	    "bookRequest" : {
+		"type" : "object",
+		"properties" :{
+		    "title" : {
+                         "type" : "string",
+                         "format" : "string"              
+		    },
+                    "language" : {
+                         "type" : "string",
+                         "format" : "string"              
+		    },
+                    "editorial" : {
+                         "type" : "string",
+                         "format" : "string"              
+		    },
+                    "location" : {
+                         "type" : "string",
+                         "format" : "string"              
+		    },
+                    "status" : {
+                         "type" : "string",
+                         "format" : "string"              
+		    },
+		    "id" : {
+                        "type" : "number",
+			"format" : "number"
+	            }
+		}
+            },
+            "bookRequests" : {
+                "type" : "object",
+                "properties" : {
+                    "bookRequest": {
+                        "type" : "object",
+                        "additionalProperties" : {
+                            "$ref" : "#/components/schemas/bookRequest"
+                        }
+                    } 
+                }
+            }        
+        },
+	"securitySchemes" : {
+            "BearerAuth" : {
+                "type" : "http",
+                "description" : "Bearer Authentication Token",
+                "scheme" : "bearer",
+                "bearerFormat": "JWT"
+            }
+        }
+    },
+    "security" : [
+	{
+            "BearerAuth":[]
+        }
+    ]
+ }
+

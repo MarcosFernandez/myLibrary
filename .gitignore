@@ -1,0 +1,8 @@
+LOG
+DatabaseDesign
+*.db
+__pycache__/
+*.pyc
+migrations
+REFERENCES
+
